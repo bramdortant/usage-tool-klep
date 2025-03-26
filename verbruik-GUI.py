@@ -11,7 +11,7 @@ import pandas as pd
 import tkinter as tk
 import re
 from tkinterdnd2 import TkinterDnD, DND_FILES
-from anonemail import Email
+# from anonemail import Email
 
 #Read excel file
 
@@ -144,29 +144,29 @@ def reset_planes():
     for key in file_paths:
         file_paths[key] = None
         
-# Function to send the Excel file via email
-def send_email_with_attachment(dataframe, recipient_email, subject, body, attachment_filename):
-    # Save DataFrame to Excel
-    save_dataframe_to_excel(dataframe, attachment_filename)
+# # Function to send the Excel file via email
+# def send_email_with_attachment(dataframe, recipient_email, subject, body, attachment_filename):
+#     # Save DataFrame to Excel
+#     save_dataframe_to_excel(dataframe, attachment_filename)
     
-    # Send email with attachment
-    try:
-        email = Email(
-            sender_name="Anonymous Sender",
-            sender_email="anon@example.com",  # Placeholder
-            receiver_email=recipient_email,
-            subject=subject,
-            message=body,
-            attachment=attachment_filename
-        )
-        email.send()
-        print(f"Email sent to {recipient_email} with attachment: {attachment_filename}")
-    except Exception as e:
-        print(f"Error sending email: {e}")
-    finally:
-        # Clean up by removing the temporary file
-        if os.path.exists(attachment_filename):
-            os.remove(attachment_filename)
+#     # Send email with attachment
+#     try:
+#         email = Email(
+#             sender_name="Anonymous Sender",
+#             sender_email="anon@example.com",  # Placeholder
+#             receiver_email=recipient_email,
+#             subject=subject,
+#             message=body,
+#             attachment=attachment_filename
+#         )
+#         email.send()
+#         print(f"Email sent to {recipient_email} with attachment: {attachment_filename}")
+#     except Exception as e:
+#         print(f"Error sending email: {e}")
+#     finally:
+#         # Clean up by removing the temporary file
+#         if os.path.exists(attachment_filename):
+#             os.remove(attachment_filename)
             
 # Function to save DataFrame as an Excel file
 def save_dataframe_to_excel(dataframe, filename):
@@ -189,10 +189,10 @@ def process_files():
         average.append(three_weeks[i]/3.0/drank_data.iloc[i]["Hoeveelheid per bestelunit"])
         maximum.append(max(week_usage["plane1"][i],week_usage["plane2"][i], week_usage["plane3"][i])/drank_data.iloc[i]["Hoeveelheid per bestelunit"])
         minimum.append(min(week_usage["plane1"][i],week_usage["plane2"][i], week_usage["plane3"][i])/drank_data.iloc[i]["Hoeveelheid per bestelunit"])
-    print(len(three_weeks))
-    print(len(average))
-    print(len(minimum))
-    print(len(maximum))
+    # print(len(three_weeks))
+    # print(len(average))
+    # print(len(minimum))
+    # print(len(maximum))
     usage_table_drink["Max per week"]=maximum
     usage_table_drink["Gemiddelde Bestelunit"]=average
     usage_table_drink["Min per week"]=minimum
@@ -203,14 +203,14 @@ def process_files():
     
     print(usage_table_drink.to_markdown())
     
-    # Save and send the Excel file
-    recipient = "inkoop@cafedeklep.nl"
+    # # Save and send the Excel file
+    # recipient = "inkoop@cafedeklep.nl"
         
-    subject = "Usage Table Drink"
+    # subject = "Usage Table Drink"
         
-    body = "Attached is the Usage Table Drink for the past 3 weeks."
-    attachment_filename = "Usage_Table_Drink.xlsx"
-    send_email_with_attachment(usage_table_drink, recipient, subject, body, attachment_filename)
+    # body = "Attached is the Usage Table Drink for the past 3 weeks."
+    # attachment_filename = "Usage_Table_Drink.xlsx"
+    # # send_email_with_attachment(usage_table_drink, recipient, subject, body, attachment_filename)
         
         
 
